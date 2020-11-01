@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VxWorks操作系统基础 - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content=" 文章转自CSDN。介绍了一些实时操作系统的基本概念。..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_onl0g0h21np.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+  
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        onlyPost: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '悠悠乎与颢气俱，而莫得其涯;   洋洋乎与造物者游，而不知其所穷。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">VxWorks操作系统基础</div>
+  <div class="right">
+    
+      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+    
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/KANJIANBEICHANG/KANJIANBEICHANG">Jiacheng</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3620618963,4235217563&fm=26&gp=0.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">VxWorks操作系统基础</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 01, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4275</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p> 文章转自<a target="_blank" rel="noopener" href="https://blog.csdn.net/czg13548930186/article/details/88327281">CSDN</a>。介绍了一些实时操作系统的基本概念。大多数概念和定义在学习单片机和微处理器时都有涉及。</p>
+<h2 id="1-实时操作系统概述"><a href="#1-实时操作系统概述" class="headerlink" title="1 实时操作系统概述"></a>1 实时操作系统概述</h2><h3 id="1-1-实时操作系统"><a href="#1-1-实时操作系统" class="headerlink" title="1.1 实时操作系统"></a>1.1 实时操作系统</h3><p>在计算的早期开发的操作系统的最原始的结构形式是一个<strong>统一的实体</strong>(monolithic)。在这样的系统中，提供的不同功能的模块，如处理器管理、内存管理、输入输出等，通常是独立的。他们在执行过程中<strong>并不考虑其他正在使用中的模块</strong>，各个模块都以相同的时间粒度运行，即严格按时间片<strong>分时方式</strong>运行。<br>             由于现代实时环境需要许多不同的功能，以及在这样的环境中存在的并发活动所引起的<strong>异步性和非确定性</strong>，操作系统变得更加复杂。所以早期操作系统的统一结构的组织已经被更加精确的内部结构所淘汰。</p>
+<p><strong>层次结构的起点—-内核</strong><br>             操作系统的最好的内部结构模型是一个层次性的结构，最低层是内核。这些层次可以看成为一个倒置的金字塔，每一层都建立在较低层的功能之上。 内核仅包含一个操作系统执行的最重要的低层功能。正像一个统一结构的操作系统，<strong>内核提供了在高层软件与下层硬件之间的抽象层</strong>。然而，内核仅提供了构造操作系统其他部分所需的最小操作集。</p>
+<p>对一个实时内核的要求。<br>             一个实时操作系统内核需满足许多特定的实时环境所提出的基本要求，这些包括：</p>
+<p><strong>多任务</strong>：由于真实世界的事件的异步性，能够运行许多并发进程或任务是很重要的。多任务提供了一个较好的对真实世界的匹配，因为它允许对应于许多外部事件的多线程执行。系统内核分配CPU给这些任务来获得并发性。</p>
+<p><strong>抢占调度</strong>：真实世界的事件具有继承的优先级，在分配CPU的时候要注意到这些优先级。基于优先级的抢占调度，任务都被指定了优先级， 在能够执行的任务（没有被挂起或正在等待资源）中，优先级最高的任务被分配CPU资源。换句话说，当一个高优先级的任务变为可执行态，它会立即抢占当前正在运行的较低优先级的任务。</p>
+<p><strong>快速灵活的任务间的通信与同步</strong>：在一个实时系统中，可能有许多任务作为一个应用的一部分执行。系统必须提供这些任务间的快速且功能强大的通信机制。内核也要提供为了有效地共享不可抢占的资源或临界区所需的同步、互斥机制。</p>
+<p><strong>方便的任务与中断之间的通信</strong>：尽管真实世界的事件通常作为中断方式到来，但为了提供有效的排队、优先化和减少中断延时，我们通常希望在任务级处理相应的工作。所以需要杂任务级和中断级之间存在通信。</p>
+<p><strong>性能边界</strong>：一个实时内核必须提供最坏情况的性能优化，而非针对吞吐量的性能优化。我们更期望一个系统能够始终以50微妙执行一个函数，而不期望系统平均以10微妙执行该函数，但偶尔会以75微妙执行它。</p>
+<p>特殊考虑：由于对实时内核的要求的增加，必须考虑对内核支持不断增加的复杂功能的要求。这包括多进程处理，Ada和对更新的、功能更强的处理器结构如RISC的支持。<br>拥有其它名字的内核<br>许多商用化的内核支持的功能远强于上面所列的要求。在这方面，他们不是真正的内核，而更象一个小的统一结构的操作系统。因为他们包含简单的内存分配、时钟管理、甚至一些输入输出系统调用的功能。</p>
+<p>==Jiacheng:类似于微处理器芯片和最小核心板的关系#00BCD4==</p>
+<h3 id="1-2-基本概念"><a href="#1-2-基本概念" class="headerlink" title="1.2 基本概念"></a>1.2 基本概念</h3><p><strong>任务（TASK）</strong>：任务是由计算机所执行的一项活动，它包括一个程序和于这个程序有关的数据、程序状态及计算机资源等。</p>
+<p><strong>进程（PROCESS）</strong>：在UNIX操作系统里，任务被称作进程。<br>             任务和进程都可以作为调度单位被内核调度执行，但在一些既有任务又有进程的系统里任务和进程是有区别的，主要表现在：任务可以直接对内层进行寻址，而进程不能，进程只能从其父进程里继承一些特定的属性，而任务却能和父任务在几乎相同的环境下运行。<br><strong>任务的状态</strong>：包括运行、就绪、挂起、休眠等在内的任务所处的状态。<br><strong>任务的调度</strong>：负责控制各个任务在各个任务状态之间的转换。<br><strong>任务的控制块（TCB）</strong>：任务控制块用来描述一个任务，每一个任务都与一个TCB相关联。TCB包括了任务的当前状态、优先级、要等待的事件或资源、任务程序码的起始地址、初始堆栈指针等信息。此外，TCB还被用来存放任务的“上下文”（CONTEXT）。<br><strong>任务的同步</strong>：对单个任务而言，同步就是使它能在指定的时间执行，对两个或两个以上的任务，同步是任务间需要协调执行的情况。<br><strong>消息</strong>：消息机制使用一个被各有关进程共享的消息队列，进程之间经由这个消息队列发送和接收消息，并用来协调（同步）对共享资源的使用的方法。<br><strong>管道（PIPE）</strong>：是一个类似文件的结构，它用于同步读/写操作，使用系统调用PIPE可以产生一个管道并返回两个文件指针，一个用于读管道，一个用于写管道。<br><strong>中断</strong>（Interrupt）和<strong>中断处理程序</strong>(Interrupt Service Routine)：中断一般是指硬件中断，它用于通知操作系统特定外部事件的发生，中断响应速度对于实时系统是至关重要的。可以使用intConnect()函数把特定的ISR与某一中断联系起来。<br><strong>信号</strong>（SIGNAL）：它用来通知一个任务特定事情的发生，并立即调用相应的信号处理函数进行处理，它异步的改变任务的控制流程。信号与中断类似，每个信号通常需要和特定的信号处理程序绑定起来（调用sigaction()或signal()）。信号通常用于错误或异常处理，用于通知一些硬件中断错误，如：总线错误、非法指令、浮点异常、被零除等。它也可以用于进程间通讯。<br><strong>信号量</strong>(semaphore)：很多方面类似一个全局变量，不同的是，对信号量的操作（Creat、Delete、Take、Give）都是特定的原子操作，是不可中断的。信号量主要用于进程间的同步和对共享资源的互斥访问。</p>
+<h2 id="2-VxWorks的系统综述"><a href="#2-VxWorks的系统综述" class="headerlink" title="2 VxWorks的系统综述"></a>2 VxWorks的系统综述</h2><h3 id="2-1-VxWorks"><a href="#2-1-VxWorks" class="headerlink" title="2.1 VxWorks"></a>2.1 VxWorks</h3><p>VxWorks 是美国 Wind River System 公司（ 以下简称风河 公司 ，即 WRS 公司）推出的一个实时操作系统。Tornado 是WRS 公司推出的一套实时操作系统开发环境，类似Microsoft Visual C，但是提供了更丰富的调试、防真环境和工具。<br>==Jiacheng:开源社区上可以找到workbench 3.2+VxWorks 6.8的全硬件平台版 #00BCD4==<br>     VxWorks操作系统有以下部件组成：<br>l <strong>内核</strong>（wind）：<br>n 多任务调度（采用基于优先级抢占方式，同时支持同优先级任务间的分时间片调度）<br>n 任务间的同步<br>n 进程间通信机制<br>n 中断处理<br>n 定时器和内存管理机制<br>l <strong>I/O 系统</strong><br>              VxWorks 提供了一个快速灵活的与 ANSI C 兼容的 I/O 系统，包括 UNIX 标准的Basic I/O（creat(), remove(), open(),close(), read(), write(), and ioctl().），Buffer I/O (fopen(), fclose(), fread(), fwrite(), getc(), putc()) 以及POSIX 标准的异步 I/O。VxWorks 包括以下驱动程序：网络驱动、管道驱动、RAM盘驱动、SCSI驱动、键盘驱动、显示驱动、磁盘驱动、并口驱动等</p>
+<p>l <strong>文件系统</strong><br>支持四种文件系统： dosFs，rt11Fs，rawFs 和 tapeFs<br>支持在一个单独的 VxWorks 系统上同时并存几个不同的文件系统。<br>l <strong>板级支持包 BSP</strong>（Board Support Package）<br>              板级支持包向VxWorks操作系统提供了对各种板子的硬件功能操作的统一的软件接口，它是保证VxWorks操作系统可移植性的关键，它包括硬件初始化、中断的产生和处理、硬件时钟和计时器管理、局域和总线内存地址映射、内存分配等等。 每个板级支持包括一个 ROM 启动（Boot ROM）或其它启动机制。</p>
+<p>l <strong>网络支持</strong>：<br>              它提供了对其它VxWorks系统和TCP/IP 网络系统的”透明”访问，包括与BSD套接字兼容的编程接口，远程过程调用（RPC），SNMP（可选项），远程文件访问（包括客户端和服务端的NFS机制以及使用RSH，FTP 或 TFTP的非NFS机制）以及BOOTP 和代理ARP、DHCP、DNS、OSPF、RIP。无论是松耦合的串行线路、标准的以太网连接还是紧耦合的利用共享内存的背板总线，所有的 VxWorks 网络机制都遵循标准的 Internet 协议。</p>
+<p>l <strong>系列网络产品</strong>：<br>n WindNet SNMP<br>n WindNet STREAMS<br>n WindNet 第三方产品，包括 OSI、SS7、ATM、Frame Relay、CORBA、ISDN、X.25、<br>n CMIP/GDMO、分布式网络管理等。<br>这些产品扩展了VxWorks的网络特性，并增强了嵌入式处理器的网络特性<br>l <strong>虚拟内存（ VxVMI）与共享内存（VxMP）</strong><br>n VxVMI 为带有 MMU 的目标板提供了虚拟内存机制。<br>n VxMP 提供了共享信号量，消息队列和在不同处理器之间的共享内存区域。<br>l <strong>目标代理（Target Agent）</strong><br>              目标代理遵循 WBD（Wind Debug）协议，允许目标机与主机上的 Tornado 开发工具相连。在目标代理的缺省设置中，目标代理是以 VxWorks 的一个任务tWdbTask 的形式运行的。<br>              Tornado 目标服务器（Target Server）向目标代理发送调试请求。调试请求通常决定目标代理对系统中其它任务的控制和处理。缺省状态下，目标服务器与目标代理通过网络进行通信，但是用户也可以改变通信方式。</p>
+<p>l <strong>实用库</strong><br>              VxWorks 提供了一个实用例程的扩展集，包括中断处理、看门狗定时器、消息登录、 内存分配、字符扫描、线缓冲和环缓冲管理、链表管理和 ANSI C 标准。</p>
+<p>l <strong>基于目标机的工具</strong><br>在 Tornado 开发系统中，开发工具是驻留在主机上的。但是也可以根据需要将基于目标机的Shell 和装载卸载模块加入 VxWorks。</p>
+<p>总之，VxWorks的系统结构是一个相当小的微内核的层次结构。内核仅提供多任务环境、进程间通信和同步功能。这些功能模块足够支持VxWorks在较高层次所提供的丰富的性能的要求。VxWorks与各部件关系如图所示：<img   class="lazyload" data-original="https://img-blog.csdnimg.cn/20190408140450667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly96Z2R5LWN6Zy5ibG9nLmNzZG4ubmV0,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="VxWorks各部件关系图"></p>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/11/01/hello-world/">Hello World<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=657456218 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="javascript:; " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://www.instagram.com " target="_blank" onMouseOver="this.style.color= '#DA2E76'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconinstagram "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://https://github.com/KANJIANBEICHANG " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="657456218@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/KANJIANBEICHANG/KANJIANBEICHANG">Jiacheng</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
