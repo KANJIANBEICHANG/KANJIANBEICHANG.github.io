@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>虚拟机安装VxWorks环境（下） - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="承上篇，修改完BSP文件后，开始建立工程编译BSP，得..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_onl0g0h21np.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+  
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        onlyPost: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '悠悠乎与颢气俱，而莫得其涯;   洋洋乎与造物者游，而不知其所穷。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">虚拟机安装VxWorks环境（下）</div>
+  <div class="right">
+    
+      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+    
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/KANJIANBEICHANG/KANJIANBEICHANG">Jiacheng</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="http://img3.downza.cn/download/201907/142801-5d2433f1d75df.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">虚拟机安装VxWorks环境（下）</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 09, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2181</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>承上篇，修改完BSP文件后，开始建立工程编译BSP，得到.sys文件。</p>
+<h2 id="编译BSP"><a href="#编译BSP" class="headerlink" title="编译BSP"></a>编译BSP</h2><p>I 将修改的BSP文件复制粘贴到Pentium4目录内，已有文件全部覆盖</p>
+<p>I 打开Workbench3.2，Workspace就选择WindRiver目录下的workspace目录</p>
+<p>I 建立一个新的Workbench Project<br><img   class="lazyload" data-original="./images/1604922673509.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I Build type选择Boot Loader / BSP Project<br><img   class="lazyload" data-original="./images/1604922866665.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 给工程起个名字<br><img   class="lazyload" data-original="./images/1604922906974.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I Board support package选择之前修改过的Pentium4目录，Tool chain选择gnu，勾上Copy files to project，然后Finish<br><img   class="lazyload" data-original="./images/1604923734704.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 右键选中项目，选择Build Project或者Rebuild Project进行构建<br><img   class="lazyload" data-original="./images/1604923791460.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 构建完成后，右键选中项目，选择Open Wind River VxWorks 6.8 Development Shell，打开命令行，cd进入Pentium4目录后，输入make bootrom.bin命令，将生成bootrom.bin文件</p>
+<p>I 找到workspace目录，找到该项目目录，在项目目录下找到Pentium4目录，进入并找到生成的bootrom.bin，复制出来，并修改后缀名为.sys，后续该文件作为引导程序</p>
+<p>I 找到vxload.com和vxsys.com两个文件（手动搜索，或者一般在XX\WindRiver\vxworks-6.8\host\x86-win32\bin目录下），与上一步得到的bootrom.sys放在一起，以待后续使用</p>
+<h2 id="生成VxWorks映像"><a href="#生成VxWorks映像" class="headerlink" title="生成VxWorks映像"></a>生成VxWorks映像</h2><p>I 打开Workbench3.2，Workspace就默认为WindRiver目录下的workspace目录</p>
+<p>I File-&gt;New-&gt;Other，在Wizards内输入VxWorks image查找并选择VxWorks Image Project，然后Next<br><img   class="lazyload" data-original="./images/1604923995014.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I Project name任取，最好与Image相关，Location选择默认项in workspace，然后Next<br><img   class="lazyload" data-original="./images/1604924078383.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I Project name任取，最好与Image相关，Location选择默认项in workspace，然后Next<br><img   class="lazyload" data-original="./images/1604924117473.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I Based on选择an existing project，Project中将显示此时workspace中的项目，选择第2章节中创建好的BSP项目，然后Finish<br><img   class="lazyload" data-original="./images/1604924196899.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 右键选中项目，选择Build Project或者Rebuild Project构建</p>
+<p>I 找到workspace目录，找到该项目目录，在项目目录下找到default目录，进入并找到生成的vxWorks以及vxWorks.sym，复制出来，后续这两个文件将作为VxWorks系统文件通过FTP引导系统</p>
+<h2 id="VxWorks虚拟机安装DOS机"><a href="#VxWorks虚拟机安装DOS机" class="headerlink" title="VxWorks虚拟机安装DOS机"></a>VxWorks虚拟机安装DOS机</h2><p>I 首先使用提供的DOS622镜像文件创建虚拟机</p>
+<p>I 简单设置后，开启该虚拟机，进入开始界面，选择第三个选项Other IDE CD-ROM<br><img   class="lazyload" data-original="./images/1604924522167.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 选择3后进入真正的DOS界面，开始进行硬盘分区，输入fdisk<br><img   class="lazyload" data-original="./images/1604924559049.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 选择1，建立DOS分区<br><img   class="lazyload" data-original="./images/1604924582184.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 选择1，建立一个主分区<br><img   class="lazyload" data-original="./images/1604924609049.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 选择Y，此时询问这个分区是否使用全部的空间，由于我们只需要一个分区就可以，因此选择Y<br><img   class="lazyload" data-original="./images/1604924640522.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 输入任意键，虚拟机将重启<br><img   class="lazyload" data-original="./images/1604924666327.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 重新选择3 Other IDE CD-ROM，进行主分区的格式化，输入format c: /s<br><img   class="lazyload" data-original="./images/1604924692069.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 此时已经有主分区C盘了，关闭虚拟机，在虚拟机设置中选择硬盘，选择“映射”，取消勾选“以只读模式打开文件”后确定，弹出警告点“是”即可，由此将打开该虚拟机的硬盘空间<br><img   class="lazyload" data-original="./images/1604925171584.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 将章节2中的三个文件放入盘中后，在硬盘处“断开连接”，重新开启虚拟机，依然选择3，输入c：进入c盘（即主分区）</p>
+<p>I 输入dir，可以看见三个文件已经在盘中了<br><img   class="lazyload" data-original="./images/1604925276876.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 输入vxsys c: 命令，输入y确认<br><img   class="lazyload" data-original="./images/1604925313522.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 由此bootrom.sys成功设置为引导程序，关闭虚拟机，在虚拟机设置中选择软盘，取消勾选“启动时连接”，再次开启虚拟机，VxWroks系统虚拟机安装完成，其中IP地址为172.18.101.124，也就是所提供的config.h文件内设置的地址<br><img   class="lazyload" data-original="./images/1604925360801.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 回到主机，首先设置IP地址为172.18.101.121，并关闭防火墙</p>
+<p>I 在XX\WindRiver\vxworks-6.8\host\x86-win32\bin下找到wftpd32.exe，使用该程序进行FTP的连接，最好将该软件发送到桌面快捷方式以便使用<br><img   class="lazyload" data-original="./images/1604925671089.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 在任意位置创建一个文件夹，用来给目标机提供FTP文件目录，方便起见，我们直接在C盘下创建一个名为ftp的文件夹，将章节3中得到的两个文件放入其中<br><img   class="lazyload" data-original="./images/1604925720764.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 打开wftpd32.exe，Security-&gt;Users/Rights-&gt;New User-&gt;创建一个名为target，密码为target的用户（这个用户名密码是在config.h文件修改时设定好的</p>
+<p>I 用户创建好后选择该用户，在Home Directory内填入C:\ftp，即21步中创建的文件夹，然后选择“Done”<br><img   class="lazyload" data-original="./images/1604926082437.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+<p>I 重启VxWorks虚拟机，此时虚拟机将通过FTP连接载入VxWroks系统，完成<br><img   class="lazyload" data-original="./images/1604926112069.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="enter description here"></p>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vmware-Wrkstation-Workbench3-2-DOS%E9%95%9C%E5%83%8F/" rel="tag">Vmware Wrkstation, Workbench3.2,DOS镜像</a></li></ul>
+
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/11/05/how-to-setup-1/">虚拟机安装VxWorks环境(上)<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=657456218 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="javascript:; " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://www.instagram.com " target="_blank" onMouseOver="this.style.color= '#DA2E76'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconinstagram "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://https://github.com/KANJIANBEICHANG " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="657456218@qq.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/KANJIANBEICHANG/KANJIANBEICHANG">Jiacheng</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
